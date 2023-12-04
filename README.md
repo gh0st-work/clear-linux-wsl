@@ -65,12 +65,12 @@
   swupd update
   ```
 
-- Create a new user (change `my_username` to your username):
+- Create a new user (change `USERNAME` to your username):
   ```bash
-  useradd -m -s /bin/bash my_username
+  useradd -m -s /bin/bash USERNAME
   ```
   ```bash
-  passwd my_username
+  passwd USERNAME
   ```
 
 - Add basic bundles: 
@@ -78,9 +78,9 @@
   swupd bundle-add sysadmin-basic sudo
   ```
 
-- Add user to sudoers (change `my_username` to your username):
+- Add user to sudoers (change `USERNAME` to your username):
   ```bash
-  usermod -aG wheel my_username
+  usermod -aG wheel USERNAME
   ```
 
 - Write default `wsl.conf` config:
@@ -101,9 +101,9 @@
   appendWindowsPath = true
   
   [user]
-  default = my_username
+  default = USERNAME
   ```
-  Don't forget to change `my_username` to your username, and then exit writing with `EOF` at a new line:
+  Don't forget to change `USERNAME` to your username, and then exit writing with `EOF` at a new line:
   ```bash
   EOF
   ```
@@ -115,9 +115,9 @@
   exit
   ```
   
-- Edit your shortcut path adding `-u my_username` (change `my_username` to your username) before `--cd ~`:
+- Edit your shortcut path adding `-u USERNAME` (change `USERNAME` to your username) before `--cd ~`:
   ```bash
-  %windir%\system32\cmd.exe /k cd %userprofile% && wsl.exe -d ClearLinux -u my_username --cd ~
+  %windir%\system32\cmd.exe /k cd %userprofile% && wsl.exe -d ClearLinux -u USERNAME --cd ~
   ```
 
 - Run it
@@ -138,9 +138,9 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
 - Install Ubuntu WSL and run it
 - ```bash
   bash <(curl -s https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/get_latest_rootfs.sh)
-  sudo cp clear_linux_rootfs.tar.xz /mnt/c/Users/windows_user/Downloads/
+  sudo cp clear_linux_rootfs.tar.xz /mnt/c/Users/WINDOWS_USERNAME/Downloads/
   ```
-  Where `windows_user` is your Windows user
+  Where `WINDOWS_USERNAME` is your Windows user username
 - Follow default installation instructions
 
 # Devlog
