@@ -115,7 +115,7 @@
   exit
   ```
   
-- Edit your shortcut path adding `-u USERNAME` (change `USERNAME` to your username) before `--cd ~`:
+- Edit your shortcut path (in Properties) adding `-u USERNAME` (change `USERNAME` to your username) before `--cd ~`:
   ```bash
   %windir%\system32\cmd.exe /k cd %userprofile% && wsl.exe -d ClearLinux -u USERNAME --cd ~
   ```
