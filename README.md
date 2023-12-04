@@ -54,7 +54,6 @@
   <br>`ClearLinux`
   <br><br>Recomended:
     - Change icon in Properties to [`https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/clear_linux_logo.ico`](https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/clear_linux_logo.ico)
-    - Pin to taskbar after running
 - Run it
 
   ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/0d461f3e-0c62-4d80-8345-5a971e4499f5)
@@ -126,6 +125,9 @@
   ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/d2f51814-d660-43f0-a09e-24163aadcc72)
 
   And here you are, logged as your user without any errors
+
+- Recommended:
+  - Pin to taskbar after running
 
 - Happy hacking :)
 
