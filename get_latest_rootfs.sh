@@ -45,7 +45,7 @@ cd $copy_name
 sudo tar -cf ../clear_linux_rootfs.tar *
 cd ..
 echo $(du -h clear_linux_rootfs.tar)
-sudo xz -3 clear_linux_rootfs.tar
+sudo xz -4 -T2 clear_linux_rootfs.tar
 echo $(du -h clear_linux_rootfs.tar.xz)
 
 echo "- Cleaning up..."
