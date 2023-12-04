@@ -12,7 +12,7 @@ echo "Latest Clear Linux version: $ver"
 
 iso_name="clear-$ver-live-server.iso"
 iso_url="https://cdn.download.clearlinux.org/releases/$ver/clear/$iso_name"
-wget_status=200 # $( wget_with_status $iso_url  )
+wget_status=$( wget_with_status $iso_url  )
 if [[ "$wget_status" != 200 ]]; then
     echo "ERROR: Wrong respone status code ($wget_status), check your internet connection & file ($iso_url) availability"
     exit 1
