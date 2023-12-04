@@ -1,7 +1,7 @@
 # [Clear Linux](https://www.clearlinux.org/) Windows WSL Installation
 **Features:**
 - Works in 2023
-- Latest releases
+- Latest releases, checked weekly
 
 # Installation
 - Update your Windows (min 2 Apr 2023, required for importing from `.xz`)
@@ -19,11 +19,15 @@
   ```bash
   mkdir /wsl_distros/sources
   ```
+  ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/014706e1-78e2-4cfc-8c58-d73de0423692)
+
 
 - Copy (or move) the `clear_linux_rootfs.tar.xz` to the `/wsl_distros/sources/` directory:
   ```bash
   cp -v $HOME/Downloads/clear_linux_rootfs.tar.xz /wsl_distros/sources/
   ```
+  ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/0761ca8f-2860-46ad-b98a-54ca99a1b866)
+
 
 - Update WSL (min 2 Apr 2023, required for importing from `.xz`):
   ```bash
@@ -39,10 +43,12 @@
   ```bash
   wsl.exe --list --verbose
   ```
+  ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/c6323f37-a4f3-4224-bf5f-721fd9108c1e)
+
 
 - Create on your desktop shortcut with path:
   ```bash
-  %windir%\system32\cmd.exe /k cd %userprofile% && wsl.exe -d ClearLinux
+  %windir%\system32\cmd.exe /k cd %userprofile% && wsl.exe -d ClearLinux --cd ~
   ```
   and name
   <br>`ClearLinux`
@@ -50,6 +56,10 @@
     - Change icon in Properties to [`https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/clear_linux_logo.ico`](https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/clear_linux_logo.ico)
     - Pin to taskbar after running
 - Run it
+
+  ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/0d461f3e-0c62-4d80-8345-5a971e4499f5)
+
+
 
 - Update the system:
   ```bash
@@ -99,20 +109,47 @@
   EOF
   ```
 
-- Restart WSL machine with:
+- Shutdown WSL machine with:
   ```bash
   exit
-  wsl.exe --shutdown
-  wsl.exe -d ClearLinux
+  wsl.exe -d ClearLinux --shutdown
+  exit
+  ```
+  
+- Edit your shortcut path adding `-u my_username` (change `my_username` to your username) before `--cd ~`:
+  ```bash
+  %windir%\system32\cmd.exe /k cd %userprofile% && wsl.exe -d ClearLinux -u my_username --cd ~
   ```
 
-### Devlogs
+- Run it
+
+  ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/d2f51814-d660-43f0-a09e-24163aadcc72)
+
+  And here you are, logged as your user without any errors
+
+- Happy hacking :)
+
+  And don't forget to star the repo pls!
+
+# Installation from source
+For more experienced users: you can use `get_latest_rootfs.sh` script to get official images yourself, if you assume this repo GitHub releases can be compromised
+- Install Ubuntu WSL and run it
+- ```bash
+  bash <(curl -s https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/get_latest_rootfs.sh)
+  sudo cp clear_linux_rootfs.tar.xz /mnt/c/Users/windows_user/Downloads/
+  ```
+  Where `windows_user` is your Windows user
+- Follow default installation instructions
+
+# Devlog
 - The original idea is to update & maintain [this installtion method `extract rootfs to .tar`](https://community.clearlinux.org/t/rootfs-for-wsl-gitlab/1302) that was mentioned in [this tutorial](https://community.clearlinux.org/t/tutorial-clearlinux-on-wsl2/1835) to contain the latest version (not 4 years old as in original)
 - Was decided to use [GitHub Action](https://github.com/gh0st-work/clear-linux-wsl/blob/main/.github/workflows/ci.yaml) to provide the latest version & to save my 20yo laptop resources (mainly my time lol) & just for fun of automation
 - GitHub only allows to store maximum 2GB files
 - Was decided to experiment with compression
 - gzip compression of any level did not give satisfying result
 - Found that `wsl` supports `.xz` compression container (w lzma2 compression, generally available on any unix machine) [as of 2 Apr 2023 as mentioned here](https://github.com/microsoft/WSL/issues/6056#issuecomment-1493423070)
-- `xz -3` level of compression gives `1.9G` output that is alright (for now, Clear Linux tends to grow)
-- `xz -T2` threads specified to speedup compression
+- Found unix compressions [benchmark #1](https://stephane.lesimple.fr/blog/lzop-vs-compress-vs-gzip-vs-bzip2-vs-lzma-vs-lzma2xz-benchmark-reloaded/) & [benchmark #2](https://www.rootusers.com/gzip-vs-bzip2-vs-xz-performance-comparison/)
+- `xz -3` level of compression gives `1.9G` output that is alright (for now, may change in future, have ~12-18% to compress where)
+- `xz -T2` threads specified to speedup compression (takes ~14min to compress & ~9min to upload artifact & ~1min to upload artifact to release draft, ~24min together)
 - Found [an article that explains some math behind determining the optimal threads count](https://pavelkazenin.wordpress.com/2014/08/02/optimal-number-of-threads-in-parallel-computing/). This task does not require such kind of complexity to measure lzma2 algo params, but just found it interesting for further reading
+- Works as 4 Dec 2023, provided detailed README.md
