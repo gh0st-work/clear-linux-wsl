@@ -11,7 +11,7 @@
   <br>[`https://github.com/gh0st-work/clear-linux-wsl/releases/latest/download/clear_linux_rootfs.tar.xz`](https://github.com/gh0st-work/clear-linux-wsl/releases/latest/download/clear_linux_rootfs.tar.xz)
   
 - Start a new Powershell session:
-  <br>`<WIN+r>` `powershell` `<ENTER>`
+  <br>`<WIN + r>` `powershell` `<ENTER>`
   <br><br>![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/e930276e-6fac-4762-8303-a9389e64b8b9)
   <br>Or just run Powershell from Windows Start Menu
 
@@ -152,4 +152,4 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
 - `xz -3` level of compression gives `1.9G` output that is alright (for now, may change in future, have ~12-18% to compress where)
 - `xz -T2` threads specified to speedup compression (takes ~14min to compress & ~9min to upload artifact & ~1min to upload artifact to release draft, ~24min together)
 - Found [an article that explains some math behind determining the optimal threads count](https://pavelkazenin.wordpress.com/2014/08/02/optimal-number-of-threads-in-parallel-computing/). This task does not require such kind of complexity to measure lzma2 algo params, but just found it interesting for further reading
-- Works as 4 Dec 2023, provided detailed README.md
+- Works as 4 Dec 2023, provided detailed `README.md` & `Installation from source` instructions, trust nobody not even yourself kekw
