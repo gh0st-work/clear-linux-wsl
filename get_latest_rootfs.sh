@@ -42,8 +42,15 @@ sudo rm -rf $mnt_iso_path
 
 echo "- Creating tarball..."
 cd $copy_name
-sudo tar -czf ../clear_linux_rootfs.tar.gz *
+sudo tar -cf ../clear_linux_rootfs.tar.gz *
 cd ..
+sudo gzip -9 clear_linux_rootfs.tar
+
+echo "- Cleaning up..."
+rm $iso_name
+sudo rm -rf $copy_name
+sudo rm -rf clear_linux_rootfs.tar
 
 echo "SUCCESS"
-
+echo $(du -h clear_linux_rootfs.tar.gz)
+o

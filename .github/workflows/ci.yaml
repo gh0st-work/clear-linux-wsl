@@ -32,3 +32,4 @@ jobs:
         with:
           files: clear_linux_rootfs.tar.gz
           draft: true
+
