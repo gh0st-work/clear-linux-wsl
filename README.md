@@ -1,7 +1,7 @@
 # [Clear Linux](https://www.clearlinux.org/) Windows WSL Installation
 **Features:**
 - Works in 2023
-- Latest releases, checked weekly
+- Latest releases, provided weekly
 
 # Installation
 - Update your Windows (min 2 Apr 2023, required for importing from `.xz`)
