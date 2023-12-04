@@ -1,0 +1,34 @@
+name: CI
+on:
+  workflow_dispatch:
+  schedule:
+    cron: 20 4 * * 6
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run get_latest_rootfs.sh 
+        run: |
+          sudo chmod +x get_latest_rootfs.sh
+          bash get_latest_rootfs.sh
+        shell: bash
+
+      - name: Upload tarball as GitHub artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: clear_linux_rootfs.tar.gz
+          path: clear_linux_rootfs.tar.gz
+          if-no-files-found: error
+
+      - name: Create release draft with tarball artifact
+        uses: softprops/action-gh-release@v1
+        with:
+          files: clear_linux_rootfs.tar.gz
+          draft: true
