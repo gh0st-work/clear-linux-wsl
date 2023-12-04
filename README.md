@@ -135,7 +135,7 @@
 
 # Installation from source
 For more experienced users: you can use `get_latest_rootfs.sh` script to get official images yourself, if you assume this repo GitHub releases can be compromised
-- Install Ubuntu WSL and run it
+- Install [Ubuntu WSL](https://www.microsoft.com/store/productId/9PDXGNCFSCZV) and run it
 - ```bash
   bash <(curl -s https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/get_latest_rootfs.sh)
   sudo cp clear_linux_rootfs.tar.xz /mnt/c/Users/WINDOWS_USERNAME/Downloads/
