@@ -3,7 +3,7 @@
 - Works in 2023
 - Latest releases, provided weekly
 
-# Installation
+## Installation
 - Update your Windows (min 2 Apr 2023, required for importing from `.xz`)
 - [Activate WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if not have been activated yet
 
@@ -133,7 +133,7 @@
 
   And don't forget to star the repo pls!
 
-# Installation from source
+## Installation from source
 For more experienced users: you can use `get_latest_rootfs.sh` script to get official images yourself, if you assume this repo GitHub releases can be compromised
 - Install [Ubuntu WSL](https://www.microsoft.com/store/productId/9PDXGNCFSCZV) and run it
 - ```bash
@@ -143,7 +143,7 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
   Where `WINDOWS_USERNAME` is your Windows user username
 - Follow default installation instructions
 
-# Devlog
+## Devlog
 - The original idea is to update & maintain [this installtion method `extract rootfs to .tar`](https://community.clearlinux.org/t/rootfs-for-wsl-gitlab/1302) that was mentioned in [this tutorial](https://community.clearlinux.org/t/tutorial-clearlinux-on-wsl2/1835) to contain the latest version (not 4 years old as in original)
 - Was decided to use [GitHub Action](https://github.com/gh0st-work/clear-linux-wsl/blob/main/.github/workflows/ci.yaml) to provide the latest version & to save my 20yo laptop resources (mainly my time lol) & just for fun of automation
 - GitHub only allows to store maximum 2GB files
