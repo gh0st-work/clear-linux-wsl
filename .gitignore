@@ -1,3 +1,4 @@
 *.iso
 *.tar.gz
+*.tar.xz
 *_copy*

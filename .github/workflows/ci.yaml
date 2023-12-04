@@ -23,13 +23,13 @@ jobs:
       - name: Upload tarball as GitHub artifact
         uses: actions/upload-artifact@v3
         with:
-          name: clear_linux_rootfs.tar.gz
-          path: clear_linux_rootfs.tar.gz
+          name: clear_linux_rootfs.tar.xz
+          path: clear_linux_rootfs.tar.xz
           if-no-files-found: error
 
       - name: Create release draft with tarball artifact
         uses: softprops/action-gh-release@v1
         with:
-          files: clear_linux_rootfs.tar.gz
+          files: clear_linux_rootfs.tar.xz
           draft: true
 
