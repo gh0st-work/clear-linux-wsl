@@ -144,7 +144,7 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
 - Follow default installation instructions
 
 ## Devlog
-- The original idea is to update & maintain [this installtion method `extract rootfs to .tar`](https://community.clearlinux.org/t/rootfs-for-wsl-gitlab/1302) that was mentioned in [this tutorial](https://community.clearlinux.org/t/tutorial-clearlinux-on-wsl2/1835) to contain the latest version (not 4 years old as in original)
+- The main idea is to update & maintain [this installation method `extract rootfs to .tar`](https://community.clearlinux.org/t/rootfs-for-wsl-gitlab/1302) that was mentioned in [this tutorial](https://community.clearlinux.org/t/tutorial-clearlinux-on-wsl2/1835) to contain the latest version (not 4 years old version as it is in the original tutorial)
 - Was decided to use [GitHub Action](https://github.com/gh0st-work/clear-linux-wsl/blob/main/.github/workflows/ci.yaml) to provide the latest version & to save my 20yo laptop resources (mainly my time lol) & just for fun of automation
 - GitHub only allows to store maximum 2GB files
 - Was decided to experiment with compression
