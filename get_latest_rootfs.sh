@@ -26,7 +26,7 @@ mnt_img_path="/mnt/clear_linux_rootfs_img"
 sudo mkdir $mnt_img_path 
 sudo mount -o loop "$mnt_iso_path/images/rootfs.img" $mnt_img_path 
 
-sudo tar -czf clear_linux_rootfs.tar.gz $mnt_img_path
+sudo tar -czf clear_linux_rootfs.tar.gz . -C $mnt_img_path
 
 sudo umount $mnt_img_path
 sudo umount $mnt_iso_path
