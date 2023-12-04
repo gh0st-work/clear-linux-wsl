@@ -8,8 +8,8 @@
 - [Activate WSL](https://learn.microsoft.com/en-us/windows/wsl/install) if not have been activated yet
 
 - Download the latest Clear Linux server rootfs tarball (main purpose of this repo is maintaing of this tarball):
-  <br>[`https://github.com/gh0st-work/clear-linux-wsl/releases/latest/downloads/clear_linux_rootfs.tar.xz`](https://github.com/gh0st-work/clear-linux-wsl/releases/latest/downloads/clear_linux_rootfs.tar.xz)
-
+  <br>[`https://github.com/gh0st-work/clear-linux-wsl/releases/latest/download/clear_linux_rootfs.tar.xz`](https://github.com/gh0st-work/clear-linux-wsl/releases/latest/download/clear_linux_rootfs.tar.xz)
+  
 - Start a new Powershell session:
   <br>`<WIN+r>` `powershell` `<ENTER>`
   <br><br>![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/e930276e-6fac-4762-8303-a9389e64b8b9)
