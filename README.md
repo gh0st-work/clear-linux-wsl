@@ -137,7 +137,8 @@
 For more experienced users: you can use `get_latest_rootfs.sh` script to get official images yourself, if you assume this repo GitHub releases can be compromised
 - Install [Ubuntu WSL](https://www.microsoft.com/store/productId/9PDXGNCFSCZV) and run it
 - ```bash
-  curl -s https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/get_latest_rootfs.sh && bash get_latest_rootfs.sh 1 1
+  curl -s https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/get_latest_rootfs.sh
+  bash get_latest_rootfs.sh 1 1
   sudo cp clear_linux_rootfs.tar.xz /mnt/c/Users/WINDOWS_USERNAME/Downloads/
   ```
   Where:
