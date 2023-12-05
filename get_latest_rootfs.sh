@@ -1,5 +1,23 @@
 #!/bin/bash
 
+xz_level="$1"
+if [ "$xz_level" = "" ]; then
+    xz_level="$XZ_LEVEL"
+    if [ "$xz_level" = "" ]; then
+        echo "ERROR: Provide XZ_LEVEL"
+        exit 1
+    fi
+fi
+
+xz_threads="$1"
+if [ "$xz_threads" = "" ]; then
+    xz_threads="$XZ_THREADS"
+    if [ "$xz_threads" = "" ]; then
+        echo "ERROR: Provide XZ_THREADS"
+        exit 1
+    fi
+fi
+
 wget_with_status() {
     local _wget_status=($( wget --server-response "$1" 2>&1 | awk '{ if (match($0, /.*HTTP\/[0-9\.]+ ([0-9]+).*/, m)) print m[1] }' ))
     _wget_status="${_wget_status[${#_wget_status[@]} - 1]}"
@@ -45,7 +63,7 @@ cd $copy_name
 sudo tar -cf ../clear_linux_rootfs.tar *
 cd ..
 echo $(du -h clear_linux_rootfs.tar)
-sudo xz -4 -T2 clear_linux_rootfs.tar
+sudo xz -$xz_level -T$xz_threads clear_linux_rootfs.tar
 echo $(du -h clear_linux_rootfs.tar.xz)
 
 echo "- Cleaning up..."

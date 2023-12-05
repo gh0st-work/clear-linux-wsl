@@ -17,7 +17,7 @@ jobs:
       - name: Run get_latest_rootfs.sh 
         run: |
           sudo chmod +x get_latest_rootfs.sh
-          bash get_latest_rootfs.sh
+          bash get_latest_rootfs.sh 4 2
         shell: bash
 
       - name: Upload tarball as GitHub artifact
