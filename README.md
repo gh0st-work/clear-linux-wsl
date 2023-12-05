@@ -137,13 +137,13 @@
 For more experienced users: you can use `get_latest_rootfs.sh` script to get official images yourself, if you assume this repo GitHub releases can be compromised
 - Install [Ubuntu WSL](https://www.microsoft.com/store/productId/9PDXGNCFSCZV) and run it
 - ```bash
-  bash <(curl -s https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/get_latest_rootfs.sh || XZ_LEVEL=1 XZ_THREADS=1)
+  curl -s https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/get_latest_rootfs.sh && bash get_latest_rootfs.sh 1 1
   sudo cp clear_linux_rootfs.tar.xz /mnt/c/Users/WINDOWS_USERNAME/Downloads/
   ```
   Where:
+  - First argument sets xz compression level to 1 as you are not limited by GitHub size limit and don't want to waste time
+  - Second argument sets threads count to 1, you can calculate it yourself using `lscpu`
   - `WINDOWS_USERNAME` is your Windows user username
-  - `XZ_LEVEL=1` sets minimum xz compression level as you are not limited by GitHub size limit and don't want to waste time
-  - `XZ_THREADS=1` sets threads count to 1, you can calculate it yourself using `lscpu`
 - Follow default installation instructions
 
 ## Devlog

@@ -2,20 +2,14 @@
 
 xz_level="$1"
 if [ "$xz_level" = "" ]; then
-    xz_level="$XZ_LEVEL"
-    if [ "$xz_level" = "" ]; then
-        echo "ERROR: Provide XZ_LEVEL"
-        exit 1
-    fi
+    echo "ERROR: Provide xz_level"
+    exit 1
 fi
 
-xz_threads="$1"
+xz_threads="$2"
 if [ "$xz_threads" = "" ]; then
-    xz_threads="$XZ_THREADS"
-    if [ "$xz_threads" = "" ]; then
-        echo "ERROR: Provide XZ_THREADS"
-        exit 1
-    fi
+    echo "ERROR: Provide xz_threads"
+    exit 1
 fi
 
 wget_with_status() {
