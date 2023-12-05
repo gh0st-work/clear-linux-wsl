@@ -147,12 +147,11 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
   Where:
   - First argument sets xz compression level to 1 as you are not limited by GitHub size limit and don't want to waste time
   - Second argument sets threads count to 1, you can calculate it yourself using `lscpu`
-- Copy result tarball to Windows `Downloads` folder
+  <br>
+- Copy result tarball to Windows `Downloads` folder (change `WINDOWS_USERNAME` to your Windows user username):
   ```bash
   sudo cp clear_linux_rootfs.tar.xz /mnt/c/Users/WINDOWS_USERNAME/Downloads/
   ```
-  Where:
-  - `WINDOWS_USERNAME` is your Windows user username
 - Follow default installation instructions
 
 ## Devlog
