@@ -167,3 +167,4 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
 - Found [an article that explains some math behind determining the optimal threads count](https://pavelkazenin.wordpress.com/2014/08/02/optimal-number-of-threads-in-parallel-computing/). This task does not require such kind of complexity to measure lzma2 algo params, but just found it interesting for further reading
 - Works as 4 Dec 2023, provided detailed `README.md` & `Installation from source` instructions, trust nobody not even yourself kekw
 - Now accepts `get_latest_rootfs.sh` arguments & changed `Installation from source` instructions & tested
+- Auto-releases enabled: Every GHA run automatically publishes a release
