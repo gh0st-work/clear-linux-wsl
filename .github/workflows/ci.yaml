@@ -19,7 +19,7 @@ jobs:
         run: |
           sudo chmod +x get_latest_rootfs.sh
           bash get_latest_rootfs.sh 4 2
-          echo -e "Version: $CLEAR_LINUX_VERSION\n[Clear Linux Release](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/)\n[Release Notes](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/clear/RELEASENOTES)" > release_body.txt
+          echo -e "- Version: $CLEAR_LINUX_VERSION\n- [Clear Linux Release](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/)\n- [Release Notes](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/clear/RELEASENOTES)" > release_body.txt
           echo "clear_linux_version=$CLEAR_LINUX_VERSION" >> $GITHUB_OUTPUT
         shell: bash
 
