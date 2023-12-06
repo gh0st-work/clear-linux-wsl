@@ -37,4 +37,3 @@ jobs:
           tag_name: ${{ steps.sh.outputs.clear_linux_version }}
           body_path: release_body.txt
           files: clear_linux_rootfs.tar.xz
-          draft: true
