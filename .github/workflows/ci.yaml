@@ -18,7 +18,7 @@ jobs:
         id: sh
         run: |
           sudo chmod +x get_latest_rootfs.sh
-          bash get_latest_rootfs.sh 4 2
+          source get_latest_rootfs.sh 4 2
           echo -e "- Version: $CLEAR_LINUX_VERSION\n- [Clear Linux Release](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/)\n- [Release Notes](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/clear/RELEASENOTES)" > release_body.txt
           echo "clear_linux_version=$CLEAR_LINUX_VERSION" >> $GITHUB_OUTPUT
         shell: bash
@@ -30,7 +30,7 @@ jobs:
           path: clear_linux_rootfs.tar.xz
           if-no-files-found: error
 
-      - name: Create release draft with tarball artifact
+      - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
           name: ${{ steps.sh.outputs.clear_linux_version }}
