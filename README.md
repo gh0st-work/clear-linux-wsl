@@ -54,10 +54,10 @@
   <br>`ClearLinux`
   <br><br>Recomended:
     - Change icon in Properties to [`https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/clear_linux_logo.ico`](https://raw.githubusercontent.com/gh0st-work/clear-linux-wsl/main/clear_linux_logo.ico)
+
 - Run it
-
-  ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/0d461f3e-0c62-4d80-8345-5a971e4499f5)
-
+  
+  ![image](https://github.com/gh0st-work/clear-linux-wsl/assets/59336046/0381edc8-39b5-41a2-ab73-1dff6d5b74f7)
 
 
 - Update the system:
