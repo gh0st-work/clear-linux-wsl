@@ -20,7 +20,7 @@ main() {
     fi
 
     echo "- Getting the latest Clear Linux version..."
-    local ver=$( curl -s "https://raw.githubusercontent.com/clearlinux/docker-brew-clearlinux/base/VERSION" )
+    local ver=$( curl -s "https://cdn.download.clearlinux.org/latest" )
     CLEAR_LINUX_VERSION="$ver"
 
     echo "- Downloading Clear Linux latest ($ver) release..."
