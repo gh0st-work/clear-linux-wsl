@@ -1,7 +1,7 @@
 # [Clear Linux](https://www.clearlinux.org/) Windows WSL Installation
 **Features:**
-- Works in 2023
-- Latest releases, provided weekly
+- Works in 2024
+- The latest releases, provided weekly
 
 ## Installation
 - Update your Windows (min 2 Apr 2023, required for importing from `.xz`)
@@ -155,18 +155,60 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
 - Follow default installation instructions
 
 ## Devlog
-- The main idea is to update & maintain [this installation method `extract rootfs to .tar`](https://community.clearlinux.org/t/rootfs-for-wsl-gitlab/1302) that was mentioned in [this tutorial](https://community.clearlinux.org/t/tutorial-clearlinux-on-wsl2/1835) to contain the latest version (not 4 years old version as it is in the original tutorial)
-- Was decided to use [GitHub Action](https://github.com/gh0st-work/clear-linux-wsl/blob/main/.github/workflows/ci.yaml) to provide the latest version & to save my 20yo laptop resources (mainly my time lol) & just for fun of automation
+- The main idea is to update & maintain 
+  [this installation method `extract rootfs to .tar`](https://community.clearlinux.org/t/rootfs-for-wsl-gitlab/1302) 
+  that was mentioned in 
+  [this tutorial](https://community.clearlinux.org/t/tutorial-clearlinux-on-wsl2/1835) 
+  to contain the latest version 
+  (not 4 years old version as it is in the original tutorial)
+
+- Was decided to use [GitHub Action](https://github.com/gh0st-work/clear-linux-wsl/blob/main/.github/workflows/ci.yaml) 
+  to provide the latest version & to save my 20yo laptop resources (mainly my time lol) & just for fun of automation
+
 - GitHub only allows to store maximum 2GB files
+
 - Was decided to experiment with compression
+
 - gzip compression of any level did not give satisfying result
-- Found that `wsl` supports `.xz` compression container (w lzma2 compression, generally available on any unix machine) [as of 2 Apr 2023 as mentioned here](https://github.com/microsoft/WSL/issues/6056#issuecomment-1493423070)
-- Found unix compressions [benchmark #1](https://stephane.lesimple.fr/blog/lzop-vs-compress-vs-gzip-vs-bzip2-vs-lzma-vs-lzma2xz-benchmark-reloaded/) & [benchmark #2](https://www.rootusers.com/gzip-vs-bzip2-vs-xz-performance-comparison/)
-- `xz -4` level of compression gives `1.9G` output that is alright (for now, may change in future, have ~10-15% to compress where)
-- `xz -T2` threads specified to speedup compression (takes ~14min to compress & ~9min to upload artifact & ~1min to upload artifact to release draft, ~24min together)
-- Found [an article that explains some math behind determining the optimal threads count](https://pavelkazenin.wordpress.com/2014/08/02/optimal-number-of-threads-in-parallel-computing/). This task does not require such kind of complexity to measure lzma2 algo params, but just found it interesting for further reading
-- Works as 4 Dec 2023, provided detailed `README.md` & `Installation from source` instructions, trust nobody not even yourself kekw
-- Now accepts `get_latest_rootfs.sh` arguments & changed `Installation from source` instructions & tested
-- Auto-releases enabled: Every GHA run automatically publishes a release
-- `xz -5` level of compression set, as [40580 release](https://github.com/gh0st-work/clear-linux-wsl/releases/tag/40580) reaches `1.9`-`2.0` GB
+
+- Found that `wsl` supports `.xz` compression container 
+  (w lzma2 compression, generally available on any unix machine) 
+  [as of 2 Apr 2023 as mentioned here](https://github.com/microsoft/WSL/issues/6056#issuecomment-1493423070)
+
+- Found unix compressions
+  [benchmark #1](https://stephane.lesimple.fr/blog/lzop-vs-compress-vs-gzip-vs-bzip2-vs-lzma-vs-lzma2xz-benchmark-reloaded/)
+  & [benchmark #2](https://www.rootusers.com/gzip-vs-bzip2-vs-xz-performance-comparison/)
+
+- `xz -4` level of compression gives `1.9G` output that is alright 
+  (for now, may change in future, have ~10-15% to compress where)
+
+- `xz -T2` threads specified to speedup compression
+  (takes ~14min to compress 
+  & ~9min to upload artifact 
+  & ~1min to upload artifact to release draft, 
+  ~24min together)
+
+- Found [an article that explains some math behind determining the optimal threads count](https://pavelkazenin.wordpress.com/2014/08/02/optimal-number-of-threads-in-parallel-computing/).
+  This task does not require such kind of complexity to measure lzma2 algo params, 
+  but just found it interesting for further reading
+
+- Works as 4 Dec 2023,
+  provided detailed `README.md` 
+  & `Installation from source` instructions, 
+  trust nobody not even yourself kekw
+
+- Now accepts `get_latest_rootfs.sh` arguments
+  & changed `Installation from source` instructions
+  & tested
+
+- Auto-releases enabled:
+  Every GHA run automatically publishes a release
+
+- `xz -5` level of compression set,
+  as [40580 release](https://github.com/gh0st-work/clear-linux-wsl/releases/tag/40580) reaches `1.9`-`2.0` GB.
+  New `5` level of compression gives `1.85` GB result
+  (takes ~18min to compress 
+  & ~8min to upload artifact 
+  & ~1min to upload artifact to release draft, 
+  ~27min together)
 
