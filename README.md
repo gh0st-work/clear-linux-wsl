@@ -168,3 +168,5 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
 - Works as 4 Dec 2023, provided detailed `README.md` & `Installation from source` instructions, trust nobody not even yourself kekw
 - Now accepts `get_latest_rootfs.sh` arguments & changed `Installation from source` instructions & tested
 - Auto-releases enabled: Every GHA run automatically publishes a release
+- `xz -5` level of compression set, as [40580 release](https://github.com/gh0st-work/clear-linux-wsl/releases/tag/40580) reaches `1.9`-`2.0` GB
+
