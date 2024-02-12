@@ -85,7 +85,7 @@
 
 - Write default `wsl.conf` config:
   ```bash
-  cat >> /etc/wsl.conf << 'EOF'
+  cat >> /etc/wsl.conf << EOF
   [automount]
   enabled = true
   options = "metadata,uid=1000,gid=1000,umask=22,fmask=11,case=off"
@@ -101,13 +101,10 @@
   appendWindowsPath = true
   
   [user]
-  default = USERNAME
-  ```
-  Don't forget to change `USERNAME` to your username, and then exit writing with `EOF` at a new line:
-  ```bash
+  default = $USER
   EOF
   ```
-
+  
 - Shutdown WSL machine with:
   ```bash
   exit
