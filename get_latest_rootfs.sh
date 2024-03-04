@@ -1,12 +1,16 @@
 #!/bin/bash
 
-wget_with_status() {
-    local _wget_status=($( wget --server-response "$1" 2>&1 | awk '{ if (match($0, /.*HTTP\/[0-9\.]+ ([0-9]+).*/, m)) print m[1] }' ))
-    _wget_status="${_wget_status[${#_wget_status[@]} - 1]}"
-    echo "$_wget_status"
+set -eEo pipefail
+
+wget_with_status() (
+    set -eEo pipefail
+    local status=$( wget --server-response "$1" 2>&1 | grep -F 'HTTP/' 2>&1 | tail -1 2>&1 | sed -r "s/^.*HTTP\/[0-9\.]+ ([0-9]+).*$/\1/" )
+    echo "$status"
 }
 
-main() {
+main() (
+    set -eEo pipefail
+
     local xz_level="$1"
     if [ "$xz_level" = "" ]; then
         echo "ERROR: Provide xz_level"
@@ -21,6 +25,7 @@ main() {
 
     echo "- Getting the latest Clear Linux version..."
     local ver=$( curl -s "https://cdn.download.clearlinux.org/latest" )
+    if [[ "$ver" == 41150 ]]; then ver=41160; fi # broken release
     CLEAR_LINUX_VERSION="$ver"
 
     echo "- Downloading Clear Linux latest ($ver) release..."
@@ -34,31 +39,31 @@ main() {
 
     echo "- Mounting $iso_name ..."
     local mnt_iso_path="/mnt/clear_linux_iso"
-    sudo mkdir $mnt_iso_path 
-    sudo mount -o loop $iso_name $mnt_iso_path 
+    sudo mkdir $mnt_iso_path || exit 1
+    sudo mount -o loop $iso_name $mnt_iso_path || exit 1
 
     echo "- Mounting rootfs.img ..."
     local mnt_img_path="/mnt/clear_linux_rootfs_img"
-    sudo mkdir $mnt_img_path 
-    sudo mount -o loop "$mnt_iso_path/images/rootfs.img" $mnt_img_path 
+    sudo mkdir $mnt_img_path || exit 1
+    sudo mount -o loop "$mnt_iso_path/images/rootfs.img" $mnt_img_path || exit 1
 
     echo "- Copying files..."
     local copy_name="clear_linux_rootfs_copy"
-    mkdir $copy_name
-    sudo cp -r $mnt_img_path/* ./$copy_name
+    mkdir $copy_name || exit 1
+    sudo cp -r $mnt_img_path/* ./$copy_name || exit 1
 
     echo "- Unmounting..."
-    sudo umount $mnt_img_path
-    sudo umount $mnt_iso_path
-    sudo rm -rf $mnt_img_path
-    sudo rm -rf $mnt_iso_path
+    sudo umount $mnt_img_path || exit 1
+    sudo umount $mnt_iso_path || exit 1
+    sudo rm -rf $mnt_img_path || exit 1
+    sudo rm -rf $mnt_iso_path || exit 1
 
     echo "- Creating tarball..."
     cd $copy_name
-    sudo tar -cf ../clear_linux_rootfs.tar *
+    sudo tar -cf ../clear_linux_rootfs.tar * || exit 1
     cd ..
     echo $(du -h clear_linux_rootfs.tar)
-    sudo xz -$xz_level -T$xz_threads clear_linux_rootfs.tar
+    sudo xz -$xz_level -T$xz_threads clear_linux_rootfs.tar || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
 
     echo "- Cleaning up..."
@@ -67,6 +72,6 @@ main() {
     sudo rm -rf clear_linux_rootfs.tar
 
     echo "SUCCESS"
-}
+)
 
 main "$@" || exit 1
