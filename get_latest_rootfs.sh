@@ -8,8 +8,7 @@ wget_with_status() (
     echo "$status"
 )
 
-main() (
-    set -eEo pipefail
+main() {
 
     local xz_level="$1"
     if [ "$xz_level" = "" ]; then
@@ -72,6 +71,6 @@ main() (
     sudo rm -rf clear_linux_rootfs.tar
 
     echo "SUCCESS"
-)
+}
 
 main "$@" || exit 1
