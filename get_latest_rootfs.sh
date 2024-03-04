@@ -6,7 +6,7 @@ wget_with_status() (
     set -eEo pipefail
     local status=$( wget --server-response "$1" 2>&1 | grep -F 'HTTP/' 2>&1 | tail -1 2>&1 | sed -r "s/^.*HTTP\/[0-9\.]+ ([0-9]+).*$/\1/" )
     echo "$status"
-}
+)
 
 main() (
     set -eEo pipefail
