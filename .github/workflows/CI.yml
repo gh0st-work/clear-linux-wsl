@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.4
 
       - name: Run get_latest_rootfs.sh 
         id: sh
@@ -21,17 +22,16 @@ jobs:
           source get_latest_rootfs.sh 5 2
           echo -e "- Version: $CLEAR_LINUX_VERSION\n- [Clear Linux Release](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/)\n- [Release Notes](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/clear/RELEASENOTES)" > release_body.txt
           echo "clear_linux_version=$CLEAR_LINUX_VERSION" >> $GITHUB_OUTPUT
-        shell: bash
 
       - name: Upload tarball as GitHub artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: clear_linux_rootfs.tar.xz
           path: clear_linux_rootfs.tar.xz
           if-no-files-found: error
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2.0.5
         with:
           name: ${{ steps.sh.outputs.clear_linux_version }}
           tag_name: ${{ steps.sh.outputs.clear_linux_version }}
