@@ -14,7 +14,7 @@ free_space() (
 )
 
 main() {
-    echo "Free space: " free_space
+    echo "Free space: " $(free_space)
 
     local xz_level="$1"
     if [ "$xz_level" = "" ]; then
@@ -62,7 +62,7 @@ main() {
     sudo rm -rf $mnt_iso_path || exit 1
     rm $iso_name || exit 1
 
-    echo "Free space: " free_space
+    echo "Free space: " $(free_space)
     du -h $copy_name
     exit 1
 
