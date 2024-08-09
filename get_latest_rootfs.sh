@@ -59,7 +59,8 @@ main() {
 
     echo "- Creating tarball..."
     cd $copy_name
-    sudo XZ_OPT='-$xz_level -T$xz_threads' tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
+    export XZ_OPT='-$xz_level -T$xz_threads'
+    sudo XZ_OPT=$XZ_OPT tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
     cd ..
     sudo rm -rf $copy_name || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
