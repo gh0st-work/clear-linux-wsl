@@ -65,7 +65,7 @@ main() {
     echo "- Compressing ..."
     sudo xz -$xz_level -T$xz_threads clear_linux_rootfs.tar || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
-    sudo rm -rf clear_linux_rootfs.tar || exit
+    sudo rm -rf clear_linux_rootfs.tar || exit 1
 
     echo "SUCCESS"
 }
