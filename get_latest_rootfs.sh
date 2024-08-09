@@ -24,7 +24,6 @@ main() {
 
     echo "- Getting the latest Clear Linux version..."
     local ver=$( curl -s "https://cdn.download.clearlinux.org/latest" )
-    if [[ "$ver" = "41150" ]]; then ver="41160"; fi # broken release
     export CLEAR_LINUX_VERSION="$ver"
 
     echo "- Downloading Clear Linux latest ($ver) release..."
