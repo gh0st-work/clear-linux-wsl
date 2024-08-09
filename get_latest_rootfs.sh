@@ -22,10 +22,6 @@ XZ_OPT="-$xz_level -T$xz_threads"
 export XZ_OPT="-$xz_level -T$xz_threads"
 
 main() {
-    echo $XZ_OPT
-    sudo -E printenv
-    exit 1
-
     echo "- Getting the latest Clear Linux version..."
     local ver=$( curl -s "https://cdn.download.clearlinux.org/latest" )
     export CLEAR_LINUX_VERSION="$ver"
@@ -63,7 +59,7 @@ main() {
 
     echo "- Creating tarball..."
     cd $copy_name
-    sudo -E XZ_OPT=$XZ_OPT tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
+    sudo -E tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
     cd ..
     sudo rm -rf $copy_name || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
