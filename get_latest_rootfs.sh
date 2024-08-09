@@ -55,19 +55,14 @@ main() {
     sudo umount $mnt_iso_path || exit 1
     sudo rm -rf $mnt_img_path || exit 1
     sudo rm -rf $mnt_iso_path || exit 1
+    rm $iso_name || exit 1
 
     echo "- Creating tarball..."
     cd $copy_name
-    sudo tar -cf ../clear_linux_rootfs.tar * || exit 1
+    sudo XZ_OPT='-$xz_level -T$xz_threads' tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
     cd ..
-    echo $(du -h clear_linux_rootfs.tar)
-    sudo xz -$xz_level -T$xz_threads clear_linux_rootfs.tar || exit 1
+    sudo rm -rf $copy_name || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
-
-    echo "- Cleaning up..."
-    rm $iso_name
-    sudo rm -rf $copy_name
-    sudo rm -rf clear_linux_rootfs.tar
 
     echo "SUCCESS"
 }
