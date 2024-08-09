@@ -63,7 +63,8 @@ main() {
     rm $iso_name || exit 1
 
     echo "Free space: " $(free_space)
-    du -hs $copy_name
+    sudo du -hs $copy_name
+    ls -Lla
     exit 1
 
     echo "- Creating tarball..."
