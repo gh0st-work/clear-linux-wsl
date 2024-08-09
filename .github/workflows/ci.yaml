@@ -17,9 +17,6 @@ jobs:
       - name: Run get_latest_rootfs.sh 
         id: sh
         run: |
-          df -h
-          df -h | grep -E '/$' | grep -oE '[0-9]+(\.[0-9]+)?G?M?' | tail -2 | head -1
-          exit 1
           sudo chmod +x get_latest_rootfs.sh
           source get_latest_rootfs.sh 7 2
           echo -e "- Version: $CLEAR_LINUX_VERSION\n- [Clear Linux Release](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/)\n- [Release Notes](https://cdn.download.clearlinux.org/releases/$CLEAR_LINUX_VERSION/clear/RELEASENOTES)" > release_body.txt
