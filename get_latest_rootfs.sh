@@ -50,11 +50,15 @@ main() {
     sudo mkdir $mnt_img_path || exit 1
     sudo mount -o loop "$mnt_iso_path/images/rootfs.img" $mnt_img_path || exit 1
 
-    echo "- Copying files..."
-    local copy_name="clear_linux_rootfs_copy"
-    mkdir $copy_name || exit 1
-    sudo cp -r $mnt_img_path/* ./$copy_name || exit 1
-
+    echo "- Creating tarball.."
+    echo "Free space: " $(free_space)
+    cwd=$(pwd)
+    cd $mnt_img_path
+    sudo tar -cf $cwd/clear_linux_rootfs.tar * || exit 1
+    cd $cwd
+    echo $(du -h clear_linux_rootfs.tar)
+    echo "Free space: " $(free_space)
+    
     echo "- Unmounting..."
     sudo umount $mnt_img_path || exit 1
     sudo umount $mnt_iso_path || exit 1
@@ -62,20 +66,11 @@ main() {
     sudo rm -rf $mnt_iso_path || exit 1
     rm $iso_name || exit 1
 
-    echo "Free space: " $(free_space)
-    sudo du -hs $copy_name
-    ls -Lla
-    exit 1
-
-    echo "- Creating tarball..."
-    cd $copy_name
-    sudo tar -cf ../clear_linux_rootfs.tar * || exit 1
-    cd ..
-    echo $(du -h clear_linux_rootfs.tar)
-    sudo rm -rf $copy_name || exit 1
+    echo "- Compressing..."
     sudo xz -$xz_level -T$xz_threads clear_linux_rootfs.tar || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
-    sudo rm -rf clear_linux_rootfs.tar || exit 1
+    sudo rm -rf clear_linux_rootfs.tar || exit
+
     echo "SUCCESS"
 }
 
