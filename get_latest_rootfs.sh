@@ -14,8 +14,6 @@ free_space() (
 )
 
 main() {
-    echo "Free space: " $(free_space)
-
     local xz_level="$1"
     if [ "$xz_level" = "" ]; then
         echo "ERROR: Provide xz_level"
@@ -50,23 +48,21 @@ main() {
     sudo mkdir $mnt_img_path || exit 1
     sudo mount -o loop "$mnt_iso_path/images/rootfs.img" $mnt_img_path || exit 1
 
-    echo "- Creating tarball.."
-    echo "Free space: " $(free_space)
+    echo "- Creating tarball ..."
     cwd=$(pwd)
     cd $mnt_img_path
     sudo tar -cf $cwd/clear_linux_rootfs.tar * || exit 1
     cd $cwd
     echo $(du -h clear_linux_rootfs.tar)
-    echo "Free space: " $(free_space)
     
-    echo "- Unmounting..."
+    echo "- Unmounting ..."
     sudo umount $mnt_img_path || exit 1
     sudo umount $mnt_iso_path || exit 1
     sudo rm -rf $mnt_img_path || exit 1
     sudo rm -rf $mnt_iso_path || exit 1
     rm $iso_name || exit 1
 
-    echo "- Compressing..."
+    echo "- Compressing ..."
     sudo xz -$xz_level -T$xz_threads clear_linux_rootfs.tar || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
     sudo rm -rf clear_linux_rootfs.tar || exit
