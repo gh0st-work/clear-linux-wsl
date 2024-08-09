@@ -2,6 +2,7 @@
 **Features:**
 - Works in 2024
 - The latest releases, provided weekly
+- Fully automated via GitHub Actions
 
 ## Installation
 - Update your Windows (min 2 Apr 2023, required for importing from `.xz`)
@@ -211,4 +212,7 @@ For more experienced users: you can use `get_latest_rootfs.sh` script to get off
   & ~8min to upload artifact 
   & ~1min to upload artifact to release draft, 
   ~27min together)
-
+- `xz -7' level of compression is set, as [41780 release](https://github.com/gh0st-work/clear-linux-wsl/actions/runs/9327597223/job/25677697753) reaches `2.1` GB.
+  New 7 level of compression gives `1.5` GB result.
+  GitHub runners drive space limit `19` GB is exceeded, so the order of operations has been changed to save space.
+  Takes ~17min in total.
