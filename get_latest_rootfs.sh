@@ -8,19 +8,23 @@ wget_with_status() (
     echo "$status"
 )
 
+xz_level="$1"
+if [ "$xz_level" = "" ]; then
+    echo "ERROR: Provide xz_level"
+    exit 1
+fi
+xz_threads="$2"
+if [ "$xz_threads" = "" ]; then
+    echo "ERROR: Provide xz_threads"
+    exit 1
+fi
+XZ_OPT="-$xz_level -T$xz_threads"
+export XZ_OPT="-$xz_level -T$xz_threads"
+
 main() {
-
-    local xz_level="$1"
-    if [ "$xz_level" = "" ]; then
-        echo "ERROR: Provide xz_level"
-        exit 1
-    fi
-
-    local xz_threads="$2"
-    if [ "$xz_threads" = "" ]; then
-        echo "ERROR: Provide xz_threads"
-        exit 1
-    fi
+    echo $XZ_OPT
+    sudo -E printenv
+    exit 1
 
     echo "- Getting the latest Clear Linux version..."
     local ver=$( curl -s "https://cdn.download.clearlinux.org/latest" )
@@ -59,9 +63,7 @@ main() {
 
     echo "- Creating tarball..."
     cd $copy_name
-    XZ_OPT="-$xz_level -T$xz_threads"
-    export XZ_OPT="-$xz_level -T$xz_threads"
-    tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
+    sudo -E XZ_OPT=$XZ_OPT tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
     cd ..
     sudo rm -rf $copy_name || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
