@@ -8,7 +8,14 @@ wget_with_status() (
     echo "$status"
 )
 
+free_space() (
+    local str=$(df -h | grep -E '/$' | grep -oE '[0-9]+(\.[0-9]+)?G?M?'K? | tail -2 | head -1)
+    echo "$str"
+)
+
 main() {
+    echo "Free space: " free_space
+
     local xz_level="$1"
     if [ "$xz_level" = "" ]; then
         echo "ERROR: Provide xz_level"
@@ -54,6 +61,10 @@ main() {
     sudo rm -rf $mnt_img_path || exit 1
     sudo rm -rf $mnt_iso_path || exit 1
     rm $iso_name || exit 1
+
+    echo "Free space: " free_space
+    du -h $copy_name
+    exit 1
 
     echo "- Creating tarball..."
     cd $copy_name
