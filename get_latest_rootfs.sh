@@ -61,7 +61,7 @@ main() {
     cd $copy_name
     XZ_OPT="-$xz_level -T$xz_threads"
     export XZ_OPT="-$xz_level -T$xz_threads"
-    sudo -E tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
+    tar -cJf ../clear_linux_rootfs.tar.xz * || exit 1
     cd ..
     sudo rm -rf $copy_name || exit 1
     echo $(du -h clear_linux_rootfs.tar.xz)
